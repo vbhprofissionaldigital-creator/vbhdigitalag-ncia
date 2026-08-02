@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VBH Digital Agência — Presença digital à altura do seu negócio</title>
+<meta name="description" content="Sites, agentes de inteligência artificial no WhatsApp e automação para negócios do Vale do Paraíba que já são referência — e agora precisam parecer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;0,6..96,700;1,6..96,500&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0A08;
+    --panel:#141109;
+    --panel-2:#1C1710;
+    --gold:#C6A253;
+    --gold-bright:#E9CC81;
+    --gold-dim:#6E5827;
+    --cream:#F3EEE3;
+    --muted:#9C9382;
+    --hairline:rgba(198,162,83,0.24);
+    --hairline-soft:rgba(198,162,83,0.12);
+    --radius:3px;
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Manrope',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.55;
+    position:relative;
+  }
+  /* subtle grain + vignette */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:0;
+    background-image:radial-gradient(ellipse at 50% 0%, rgba(198,162,83,0.06), transparent 60%),
+      radial-gradient(circle at 100% 100%, rgba(0,0,0,0.5), transparent 55%);
+  }
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  h1,h2,h3{
+    font-family:'Bodoni Moda',serif;
+    font-weight:500;
+    line-height:1.05;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  h1 em, h2 em{ font-style:italic; color:var(--gold); }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--gold);color:var(--ink);}
+
+  :focus-visible{
+    outline:2px solid var(--gold-bright);
+    outline-offset:3px;
+  }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+    position:relative;
+    z-index:1;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:11.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,10,8,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--hairline-soft);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .logo{ display:flex; align-items:center; gap:12px; }
+  .logo-mark{
+    width:36px;height:36px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Bodoni Moda',serif;
+    font-style:italic;
+    font-size:16px;
+    color:var(--gold);
+    flex-shrink:0;
+  }
+  .logo-text{
+    font-family:'Bodoni Moda',serif;
+    font-size:17px;
+    letter-spacing:0.03em;
+    color:var(--cream);
+  }
+  .logo-text small{
+    display:block;
+    font-family:'Space Mono',monospace;
+    font-size:9.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-top:3px;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:36px;
+    font-size:13.5px; font-weight:500;
+  }
+  .nav-links a{ color:var(--muted); transition:color .15s; }
+  .nav-links a:hover{ color:var(--gold); }
+
+  .btn{
+    font-family:'Manrope',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    padding:12px 22px;
+    border-radius:var(--radius);
+    border:1px solid transparent;
+    display:inline-flex; align-items:center; gap:8px;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+    letter-spacing:0.02em;
+  }
+  .btn-gold{ background:var(--gold); color:var(--ink); }
+  .btn-gold:hover{ background:var(--gold-bright); transform:translateY(-1px); box-shadow:0 10px 24px -10px rgba(198,162,83,0.55); }
+  .btn-ghost{ border-color:var(--hairline); color:var(--cream); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+
+  .nav-cta{ display:flex; align-items:center; gap:14px; }
+  .hamburger{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .hamburger span{ display:block; width:22px; height:1px; background:var(--gold); margin:6px 0; }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:88px 0 72px; }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:64px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(32px,3.8vw,48px);
+    margin-top:22px;
+  }
+  .hero p.lede{
+    font-size:16.5px;
+    color:var(--muted);
+    max-width:48ch;
+    margin-top:22px;
+  }
+  .hero-actions{ display:flex; gap:14px; margin-top:34px; flex-wrap:wrap; }
+
+  /* ---------- SIGNATURE: ANTES / DEPOIS REVEAL ---------- */
+  .reveal{
+    position:relative;
+    aspect-ratio:4/3.1;
+    border:1px solid var(--hairline);
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--panel);
+  }
+  .reveal-layer{ position:absolute; inset:0; display:flex; flex-direction:column; }
+
+  /* BEFORE (static, full) */
+  .reveal-before{
+    padding:26px 24px;
+    justify-content:center;
+    filter:grayscale(1) contrast(0.85) brightness(0.8);
+  }
+  .before-label{
+    font-family:'Space Mono',monospace;
+    font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    color:#7a7568; margin-bottom:14px;
+  }
+  .before-card{
+    border:1px dashed #55503f;
+    border-radius:4px;
+    padding:18px;
+  }
+  .before-name{ font-family:'Manrope',sans-serif; font-weight:700; font-size:17px; color:#cfc9ba; }
+  .before-meta{ font-size:12.5px; color:#8c8677; margin-top:6px; }
+  .before-flag{
+    display:inline-block; margin-top:14px;
+    font-family:'Space Mono',monospace; font-size:10px;
+    letter-spacing:0.05em; text-transform:uppercase;
+    color:#a39d8d; border-top:1px dashed #55503f; padding-top:10px;
+  }
+
+  /* AFTER (clipped, reveals) */
+  .reveal-after{
+    padding:26px 24px;
+    justify-content:center;
+    background:linear-gradient(160deg, var(--panel-2), var(--panel));
+    clip-path:inset(0 62% 0 0);
+    animation:sweepClip 8s ease-in-out infinite;
+  }
+  .after-label{
+    font-family:'Space Mono',monospace;
+    font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:14px;
+  }
+  .after-nav{ display:flex; gap:16px; margin-bottom:18px; }
+  .after-nav span{ width:5px; height:5px; border-radius:50%; background:var(--gold-dim); }
+  .after-name{ font-family:'Bodoni Moda',serif; font-style:italic; font-weight:500; font-size:24px; color:var(--gold-bright); }
+  .after-meta{ font-size:12.5px; color:var(--muted); margin-top:8px; }
+  .after-cta{
+    display:inline-block; margin-top:18px;
+    background:var(--gold); color:var(--ink);
+    font-family:'Manrope',sans-serif; font-weight:700; font-size:11.5px;
+    padding:9px 16px; border-radius:2px;
+  }
+
+  .scanline{
+    position:absolute; top:0; bottom:0;
+    width:2px;
+    background:linear-gradient(var(--gold-bright), var(--gold));
+    box-shadow:0 0 14px 1px rgba(233,204,129,0.65);
+    left:38%;
+    animation:sweepLine 8s ease-in-out infinite;
+  }
+
+  @keyframes sweepClip{
+    0%   { clip-path:inset(0 100% 0 0); }
+    12%  { clip-path:inset(0 100% 0 0); }
+    45%  { clip-path:inset(0 0% 0 0); }
+    65%  { clip-path:inset(0 0% 0 0); }
+    100% { clip-path:inset(0 100% 0 0); }
+  }
+  @keyframes sweepLine{
+    0%   { left:0%; opacity:0; }
+    12%  { left:0%; opacity:1; }
+    45%  { left:100%; }
+    65%  { left:100%; }
+    88%  { left:0%; opacity:1; }
+    100% { left:0%; opacity:0; }
+  }
+
+  .reveal-caption{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:14px;
+    font-family:'Space Mono',monospace; font-size:10.5px;
+    color:var(--muted); letter-spacing:0.04em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal-after{ animation:none; clip-path:inset(0 45% 0 0); }
+    .scanline{ animation:none; left:55%; opacity:1; }
+    html{ scroll-behavior:auto; }
+  }
+
+  /* ---------- POSITIONING STRIP ---------- */
+  .strip{
+    border-top:1px solid var(--hairline-soft);
+    border-bottom:1px solid var(--hairline-soft);
+    padding:26px 0;
+  }
+  .strip-row{
+    display:flex; flex-wrap:wrap;
+    justify-content:space-between;
+    gap:18px 28px;
+  }
+  .strip-item{
+    font-size:13px; color:var(--muted);
+    display:flex; align-items:center; gap:9px;
+    flex:1 1 200px;
+  }
+  .strip-item::before{
+    content:"◆"; color:var(--gold); font-size:8px;
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section.block{ padding:96px 0; }
+  .section-head{ max-width:600px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(28px,3.2vw,38px); margin-top:16px; }
+  .section-head p{ color:var(--muted); margin-top:16px; font-size:15.5px; }
+
+  /* ---------- SERVICES (editorial menu, not numbered) ---------- */
+  .services-list{ }
+  .service-row{
+    display:grid;
+    grid-template-columns:44px 1fr 1.3fr;
+    gap:28px;
+    padding:32px 0;
+    border-top:1px solid var(--hairline-soft);
+    align-items:start;
+  }
+  .service-row:last-child{ border-bottom:1px solid var(--hairline-soft); }
+  .service-glyph{
+    width:38px;height:38px;
+    border:1px solid var(--gold-dim);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--gold);
+    font-family:'Bodoni Moda',serif; font-style:italic; font-size:16px;
+  }
+  .service-row h3{
+    font-size:21px; font-weight:500;
+    align-self:center;
+  }
+  .service-row p{ color:var(--muted); font-size:14.5px; align-self:center; }
+  .service-row .tag{
+    display:block; margin-top:12px;
+    font-family:'Space Mono',monospace; font-size:10.5px;
+    color:var(--gold); letter-spacing:0.04em;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-list{ display:flex; flex-direction:column; }
+  .process-row{
+    display:grid;
+    grid-template-columns:80px 1fr;
+    gap:26px;
+    padding:28px 0;
+    border-top:1px solid var(--hairline-soft);
+    align-items:baseline;
+  }
+  .process-row:last-child{ border-bottom:1px solid var(--hairline-soft); }
+  .process-num{
+    font-family:'Space Mono',monospace; font-weight:700;
+    font-size:14px; color:var(--gold);
+  }
+  .process-row h3{ font-size:18px; font-weight:600; font-family:'Manrope',sans-serif; }
+  .process-row p{ color:var(--muted); font-size:14.5px; margin-top:7px; max-width:56ch; }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    border:1px solid var(--hairline);
+    border-radius:8px;
+    padding:64px 48px;
+    background:linear-gradient(160deg, var(--panel), var(--ink));
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:44px;
+    align-items:center;
+  }
+  .contact h2{ font-size:clamp(26px,3.2vw,34px); }
+  .contact p{ color:var(--muted); margin-top:16px; font-size:15px; max-width:44ch; }
+  .contact-actions{ display:flex; flex-direction:column; gap:10px; }
+  .contact-line{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:15px 0; border-bottom:1px solid var(--hairline-soft);
+    font-size:13.5px;
+  }
+  .contact-line span:first-child{
+    color:var(--muted); font-family:'Space Mono',monospace;
+    font-size:10.5px; text-transform:uppercase; letter-spacing:0.06em;
+  }
+  .contact-line span:last-child{ color:var(--cream); }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:40px 0 48px; }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+    padding-top:30px; border-top:1px solid var(--hairline-soft);
+  }
+  .footer-row p{ font-size:12.5px; color:var(--muted); font-family:'Space Mono',monospace; }
+  .footer-links{ display:flex; gap:24px; font-size:13px; color:var(--muted); }
+  .footer-links a:hover{ color:var(--gold); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:920px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .strip-row{ flex-direction:column; }
+    .service-row{ grid-template-columns:1fr; gap:10px; }
+    .service-row h3{ margin-top:4px; }
+    .contact{ grid-template-columns:1fr; padding:44px 28px; }
+  }
+  @media (max-width:760px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--ink);
+      border-bottom:1px solid var(--hairline-soft);
+      flex-direction:column; align-items:flex-start; gap:0;
+      padding:8px 32px 20px; display:none;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-links a{ padding:13px 0; width:100%; border-bottom:1px solid var(--hairline-soft); }
+    .hamburger{ display:block; }
+    .nav-cta .btn-ghost{ display:none; }
+    section.block{ padding:64px 0; }
+    .hero{ padding:48px 0 52px; }
+    .process-row, .service-row{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">
+      <span class="logo-mark">V</span>
+      <span class="logo-text">VBH Digital Agência<small>Vale do Paraíba</small></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#servicos">Serviços</a>
+      <a href="#processo">Processo</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#contato" class="btn btn-ghost">Ver serviços</a>
+      <a href="https://wa.me/5512991166583" target="_blank" rel="noopener" class="btn btn-gold">Falar no WhatsApp</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Agência digital · Vale do Paraíba</span>
+        <h1>Seu negócio já é referência.<br>Sua presença digital <em>ainda não parece.</em></h1>
+        <p class="lede">Criamos sites, agentes de inteligência artificial no WhatsApp e automações para negócios que já conquistaram o cliente local — e agora precisam parecer o que já são.</p>
+        <div class="hero-actions">
+          <a href="https://wa.me/5512991166583" target="_blank" rel="noopener" class="btn btn-gold">Falar no WhatsApp</a>
+          <a href="#servicos" class="btn btn-ghost">Conhecer os serviços</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="reveal" aria-hidden="true">
+          <div class="reveal-layer reveal-before">
+            <div class="before-label">Como está hoje</div>
+            <div class="before-card">
+              <div class="before-name">Criamos Sites</div>
+              <div class="before-meta">★ 4.8 · 340 avaliações no Google</div>
+              <div class="before-flag">sem site cadastrado</div>
+            </div>
+          </div>
+          <div class="reveal-layer reveal-after">
+            <div class="after-label">Como poderia estar</div>
+            <div class="after-nav"><span></span><span></span><span></span></div>
+            <div class="after-name">Criamos Sites</div>
+            <div class="after-meta">Site próprio · identidade visual completa</div>
+            <span class="after-cta">Fale Conosco →</span>
+          </div>
+          <div class="scanline"></div>
+        </div>
+        <div class="reveal-caption">
+          <span>ANTES</span>
+          <span>TRANSFORMAÇÃO VBH</span>
+          <span>DEPOIS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSITIONING STRIP -->
+  <section class="strip">
+    <div class="wrap strip-row">
+      <div class="strip-item">Atendimento direto com quem constrói</div>
+      <div class="strip-item">WhatsApp Business oficial — Meta Cloud API</div>
+      <div class="strip-item">Conformidade com a LGPD</div>
+      <div class="strip-item">Vale do Paraíba &amp; São Paulo</div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="block" id="servicos">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Serviços</span>
+        <h2>Serviço personalizado para comércio local e região.</h2>
+        <p>Um site feito sob medida para o seu negócio — o critério é sempre o mesmo: parecer tão bom quanto o negócio realmente é.</p>
+      </div>
+      <div class="services-list">
+        <div class="service-row">
+          <div class="service-glyph">S</div>
+          <h3>Sites</h3>
+          <div>
+            <p>Sites institucionais rápidos, pensados para aparecer no Google e transformar visita em conversa — não uma vitrine estática que ninguém encontra.</p>
+            <span class="tag">Feito sob medida</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="block" id="processo">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Como funciona</span>
+        <h2>Do primeiro contato à sua marca no ar.</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-row">
+          <span class="process-num">01</span>
+          <div>
+            <h3>Conversa inicial</h3>
+            <p>Entendemos sua rotina: onde você está perdendo tempo, mensagem ou horário de agenda.</p>
+          </div>
+        </div>
+        <div class="process-row">
+          <span class="process-num">02</span>
+          <div>
+            <h3>Demonstração</h3>
+            <p>Você recebe uma prévia real do seu site, com nome e a identidade da sua marca — sem compromisso.</p>
+          </div>
+        </div>
+        <div class="process-row">
+          <span class="process-num">03</span>
+          <div>
+            <h3>Personalização</h3>
+            <p>Ajustamos o fluxo de atendimento para o seu WhatsApp e a sua identidade visual até ficar do jeito certo.</p>
+          </div>
+        </div>
+        <div class="process-row">
+          <span class="process-num">04</span>
+          <div>
+            <h3>Ativação</h3>
+            <p>Colocamos no ar e acompanhamos os primeiros atendimentos reais junto com você.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="block" id="contato">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <span class="eyebrow">Vamos conversar?</span>
+          <h2>Sua presença digital merece o mesmo padrão do seu atendimento.</h2>
+          <p>Atendimento em Taubaté, Tremembé e região, com projetos remotos para todo o Vale do Paraíba.</p>
+        </div>
+        <div class="contact-actions">
+          <a href="https://wa.me/5512991166583" target="_blank" rel="noopener" class="btn btn-gold" style="justify-content:center;">Chamar no WhatsApp</a>
+          <div class="contact-line"><span>E-mail</span><span>contato@vbhdigitalagencia.com.br</span></div>
+          <div class="contact-line"><span>WhatsApp</span><span>(12) 99116-6583</span></div>
+          <div class="contact-line"><span>Região</span><span>Vale do Paraíba, SP</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <p>© 2026 VBH DIGITAL AGÊNCIA</p>
+      <div class="footer-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#processo">Processo</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
